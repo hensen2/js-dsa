@@ -1,38 +1,39 @@
 export default class Stack {
-  constructor(data = []) {
+  constructor(data) {
     this.stack = data;
-    this.top = 0;
+    this.top = this.stack.length - 1; // set to -1 if empty
   }
 
   push(element) {
+    this.top++;
     this.stack.push(element);
-    this.top += 1;
   }
 
   pop() {
-    if (this.top !== 0) {
-      this.top -= 1;
-      return this.stack.pop();
+    if (this.isEmpty()) {
+      throw new Error("Stack Underflow");
     }
-    throw new Error("Stack Underflow");
+    this.top--;
+    return this.stack.pop();
   }
 
   peek() {
-    if (this.top !== 0) {
-      return this.stack[this.top - 1];
+    if (this.isEmpty()) {
+      return null;
     }
-    return null;
+    return this.stack[this.top];
   }
 
   isEmpty() {
-    return this.top === 0;
+    return this.top === -1;
   }
 
   size() {
-    return this.top;
+    return this.stack.length;
   }
 
   clear() {
+    this.top = -1;
     this.stack = [];
   }
 
