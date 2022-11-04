@@ -1,5 +1,7 @@
-export default class Stack {
-  constructor(data) {
+// Dynamic array implementation
+
+export class Stack {
+  constructor(data = []) {
     this.stack = data;
     this.top = this.stack.length - 1; // set to -1 if empty
   }
